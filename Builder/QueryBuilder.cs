@@ -98,7 +98,7 @@ namespace AmazingCloudSearch.Builder
 
         private void FeedBooleanCritera(BooleanQuery booleanQuery, StringBuilder url)
         {
-            if(booleanQuery.Conditions == null || booleanQuery.Conditions.Count == 0)
+            if(booleanQuery == null || booleanQuery.Conditions == null || booleanQuery.Conditions.Count == 0)
                 return;
 
 			bool hasParameters = (url.Length > 0);
@@ -282,7 +282,7 @@ namespace AmazingCloudSearch.Builder
 				url.Append("&");
 			}
 
-            url.Append("return-fields=");
+            url.Append("return=");
 
             foreach (var field in fields)
             {

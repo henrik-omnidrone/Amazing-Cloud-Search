@@ -38,7 +38,8 @@ namespace AmazingCloudSearch.Query
 
 			foreach (var property in properties)
 			{
-				li.Add(property.Name);
+                if (property.Name != "id")
+				    li.Add(property.Name);
 			}
 
 			Fields = li;

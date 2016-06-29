@@ -22,10 +22,23 @@ namespace AmazingCloudSearch
         private HitFeeder<T> _hitFeeder;
         private FacetBuilder _facetBuilder;
 
+        /*
         public CloudSearch(string awsCloudSearchId, string apiVersion)
         {
             _searchUri = string.Format("http://search-{0}/{1}/search", awsCloudSearchId, apiVersion);
             _documentUri = string.Format("http://doc-{0}/{1}/documents/batch", awsCloudSearchId, apiVersion);
+            _actionBuilder = new ActionBuilder<T>();
+            _queryBuilder = new QueryBuilder<T>(_searchUri);
+            _webHelper = new WebHelper();
+            _hitFeeder = new HitFeeder<T>();
+            _facetBuilder = new FacetBuilder();
+        }
+        */
+
+        public CloudSearch(string searchUri, string docUri)
+        {
+            _searchUri = searchUri;
+            _documentUri = docUri;
             _actionBuilder = new ActionBuilder<T>();
             _queryBuilder = new QueryBuilder<T>(_searchUri);
             _webHelper = new WebHelper();

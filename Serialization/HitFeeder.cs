@@ -28,15 +28,15 @@ namespace AmazingCloudSearch.Serialization
 
             foreach(var hitDocument in dyHit)
             {
-                Dictionary<string, List<string>> jsonHitField = _serializer.Deserialize<Dictionary<string, List<string>>>(hitDocument.data.ToString());
-
+                //Dictionary<string, List<string>> jsonHitField = _serializer.Deserialize<Dictionary<string, List<string>>>(hitDocument.data.ToString());
+                Dictionary<string, string> jsonHitField = _serializer.Deserialize<Dictionary<string, string>>(hitDocument.fields.ToString());
                 T hit = Map(jsonHitField);
 
                 searchResult.hits.hit.Add(new SearchResult<T>.Hit<T> { id = hitDocument.id, data = hit });
             }
         }
 
-        private T Map(Dictionary<string, List<string>> data)
+        private T Map(Dictionary<string, string> data)
         {
             var hit = new T();
 
@@ -77,9 +77,9 @@ namespace AmazingCloudSearch.Serialization
             return hit;
         }
 
-        private List<string> FindField(string propertyName, Dictionary<string, List<string>> data)
+        private List<string> FindField(string propertyName, Dictionary<string, string> data)
         {
-            return data.FirstOrDefault(d => d.Key == propertyName).Value;
+            return new List<string>(){data.FirstOrDefault(d => d.Key == propertyName).Value};
         }
     }
 }
